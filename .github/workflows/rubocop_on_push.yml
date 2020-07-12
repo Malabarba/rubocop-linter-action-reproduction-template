@@ -1,17 +1,17 @@
 # Feel free to delete these and replace with your workflow
 
-name: Rubocop
+name: Rubocop on Push
 
-on:
-  pull_request:
-    branches: [ "*" ]
+on: [push]
 
 jobs:
-  action_default:
+  action_with_v2:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Rubocop Linter Action - Default
+    - name: Rubocop Linter Action - Config
       uses: andrewmcodes/rubocop-linter-action@v3.0.0 # Replace with version, branch, or commit sha if needed e.g. `andrewmcodes/rubocop-linter-action@v3.1.0`
+      with:
+        action_config_path: '.github/config/rubocop_linter_config.yml'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
